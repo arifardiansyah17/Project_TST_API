@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="PeminjamanService" targetNamespace="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="PeminjamanServicePort">
+    <operation name="getStudentLoanInfo">
+      <input message="tns:getStudentLoanInfoIn"/>
+    </operation>
+  </portType>
+  <binding name="PeminjamanServiceBinding" type="tns:PeminjamanServicePort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getStudentLoanInfo">
+      <soap:operation soapAction="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl#getStudentLoanInfo"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="getStudentLoanInfoIn">
+    <part name="nim" type="xsd:anyType"/>
+  </message>
+  <service name="PeminjamanServiceService">
+    <port name="PeminjamanServicePort" binding="tns:PeminjamanServiceBinding">
+      <soap:address location="http://localhost/perpus-revisi/getmanybook/peminjaman_service.wsdl"/>
+    </port>
+  </service>
+</definitions>

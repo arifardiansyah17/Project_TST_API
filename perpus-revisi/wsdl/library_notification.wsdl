@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/perpus-revisi/wsdl/server.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="LibraryNotification" targetNamespace="http://localhost/perpus-revisi/wsdl/server.php">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/perpus-revisi/wsdl/server.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="LibraryNotificationPort">
+    <operation name="__construct">
+      <input message="tns:__constructIn"/>
+    </operation>
+    <operation name="getBooksByNIM">
+      <documentation>Menampilkan buku yang dipinjam berdasarkan NIM dan memiliki tanggal pengembalian mendekati atau telah lewat.</documentation>
+      <input message="tns:getBooksByNIMIn"/>
+      <output message="tns:getBooksByNIMOut"/>
+    </operation>
+  </portType>
+  <binding name="LibraryNotificationBinding" type="tns:LibraryNotificationPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="__construct">
+      <soap:operation soapAction="http://localhost/perpus-revisi/wsdl/server.php#__construct"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/wsdl/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/wsdl/server.php"/>
+      </output>
+    </operation>
+    <operation name="getBooksByNIM">
+      <soap:operation soapAction="http://localhost/perpus-revisi/wsdl/server.php#getBooksByNIM"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/wsdl/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/perpus-revisi/wsdl/server.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="__constructIn"/>
+  <message name="getBooksByNIMIn">
+    <part name="nim" type="xsd:string"/>
+  </message>
+  <message name="getBooksByNIMOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <service name="LibraryNotificationService">
+    <port name="LibraryNotificationPort" binding="tns:LibraryNotificationBinding">
+      <soap:address location="http://localhost/perpus-revisi/wsdl/server.php"/>
+    </port>
+  </service>
+</definitions>
